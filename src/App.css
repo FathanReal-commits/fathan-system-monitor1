@@ -1,3 +1,19 @@
 body {
     background-color: bisque;
 }
+.app {
+    padding: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.hardware-grid {
+    display: grid;
+    grid-template:repeat(3, 1fr);
+    gap: 30px;
+}
+.hardware-card {
+    color: white;
+    background: rgb(51, 41, 63);
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid black;
+}

@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 import "./App.css";
 function HardwareCard(props) {
   return (
@@ -12,6 +12,7 @@ function HardwareCard(props) {
 }
 
 function App() {
+  const [gpuUsage, setGpuUsage] = useState(18);
   return (
     <div className="app">
       <h1>Fathan System Monitor</h1>
@@ -21,7 +22,7 @@ function App() {
         <HardwareCard
           name="GPU"
           model="GTX 1050 Ti"
-          usage="18%"
+          usage={`${gpuUsage}%`}
         />
         <HardwareCard
           name="CPU"
@@ -35,6 +36,9 @@ function App() {
         />
 
       </div>
+      <button onClick={() => setGpuUsage(gpuUsage + 5)}> 
+          increse Gpu Usage
+      </button>
     </div>
   );
 }

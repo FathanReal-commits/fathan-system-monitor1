@@ -1,5 +1,47 @@
 import { useState } from "react";
 import "./App.css";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer
+} from "recharts";
+const cpuData = [
+  { time: "10:00", usage: 20 },
+  { time: "10:05", usage: 35 },
+  { time: "10:10", usage: 28 },
+  { time: "10:15", usage: 50 },
+  { time: "10:20", usage: 42 },
+];
+
+function CpuCart() {
+  return (
+    <div className="cart-container">
+      <h2>Cpu Usage History</h2>
+      <ResponsiveContainer width="100%" height={250}>
+        <AreaChart data={cpuData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="time" />
+          <YAxis domain={[0, 100]} />
+          <Tooltip />
+          <Area
+            type="monotone"
+            dataKey="usage"
+            stroke="#3b82f6"
+            fill="#3b82f6"
+            fillOpacity={0.2}
+          />
+
+
+
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  )
+}
 function HardwareCard(props) {
   return (
     <div className="hardware-card">
@@ -36,8 +78,9 @@ function App() {
         />
 
       </div>
-      <button onClick={() => setGpuUsage(gpuUsage + 5)}> 
-          increse Gpu Usage
+      <CpuCart/>
+      <button onClick={() => setGpuUsage(gpuUsage + 5)}>
+        increse Gpu Usage
       </button>
     </div>
   );

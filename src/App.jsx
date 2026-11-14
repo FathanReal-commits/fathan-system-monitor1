@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import {
   AreaChart,
@@ -9,38 +9,55 @@ import {
   Tooltip,
   ResponsiveContainer
 } from "recharts";
-const cpuData = [
+
+function CpuChart() {
+  const [cpuData, setCpuData] = useState([
   { time: "10:00", usage: 20 },
   { time: "10:05", usage: 35 },
   { time: "10:10", usage: 28 },
   { time: "10:15", usage: 50 },
   { time: "10:20", usage: 42 },
-];
+]);
 
-function CpuCart() {
-  return (
-    <div className="cart-container">
-      <h2>Cpu Usage History</h2>
-      <ResponsiveContainer width="100%" height={250}>
-        <AreaChart data={cpuData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis domain={[0, 100]} />
-          <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="usage"
-            stroke="#3b82f6"
-            fill="#3b82f6"
-            fillOpacity={0.2}
-          />
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCpuData(previousData => {
+        const newReading = {
+          time: new Date().toLocaleTimeString(),
+          usage: Math.floor(Math.random() * 100)
+        };
+
+        return [...previousData.slice(1), newReading];
+      });
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
 
+return (
+  <div className="chart-container">
+    <h2>Cpu Usage History</h2>
+    <ResponsiveContainer width="100%" height={250}>
+      <AreaChart data={cpuData}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="time" />
+        <YAxis domain={[0, 100]} />
+        <Tooltip />
+        <Area
+          type="monotone"
+          dataKey="usage"
+          stroke="#3b82f6"
+          fill="#3b82f6"
+          fillOpacity={0.2}
+        />
 
-        </AreaChart>
-      </ResponsiveContainer>
-    </div>
-  )
+
+
+      </AreaChart>
+    </ResponsiveContainer>
+  </div>
+)
 }
 function HardwareCard(props) {
   return (
@@ -78,9 +95,9 @@ function App() {
         />
 
       </div>
-      <CpuCart/>
+      <CpuChart />
       <button onClick={() => setGpuUsage(gpuUsage + 5)}>
-        increse Gpu Usage
+        increase Gpu Usage
       </button>
     </div>
   );

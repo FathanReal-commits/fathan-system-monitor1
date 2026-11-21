@@ -70,10 +70,31 @@ function HardwareCard(props) {
   );
 }
 
+function Sidebar() {
+    return (
+      <aside className="sidebar">
+          <h2>Fathan Monitor</h2>
+          <nav>
+              <p>Overview</p>
+              <p>Cpu</p>
+              <p>Memory</p>
+              <p>Gpu</p>
+              <p>Storage</p>
+              <p>Network</p>
+              <p>Process</p>
+              <p>Settings</p>
+          </nav>
+      </aside>
+    )
+}
+
 function App() {
   const [gpuUsage, setGpuUsage] = useState(18);
   return (
     <div className="app">
+      <Sidebar/>
+
+      <main className="main-content">
       <h1>Fathan System Monitor</h1>
       <p>Welcome to your system dashboard</p>
 
@@ -99,6 +120,7 @@ function App() {
       <button onClick={() => setGpuUsage(gpuUsage + 5)}>
         increase Gpu Usage
       </button>
+      </main>
     </div>
   );
 }

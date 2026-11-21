@@ -2,8 +2,8 @@ body {
     background-color: #FAFAFA;
 }
 .app {
-    padding: 30px;
-    font-family: Arial, Helvetica, sans-serif;
+ display: flex;
+ min-height: 100vh;
 }
 .hardware-grid {
     display: grid;
@@ -24,4 +24,18 @@ body {
     background: #FAFAFA;
     border-radius: 3px;
     border: 1px solid #ddd;
+}
+.sidebar {
+    width: 200px;
+    padding: 20px;
+    background: 1e293b;
+    color: white;
+}
+.sidebar nav p {
+    padding: 10px;
+    cursor: pointer;
+}
+.main-content {
+    flex: 1;
+    padding: 30px;
 }
